@@ -431,39 +431,47 @@ export default function LiveWebsite({ theme, toggleTheme }: LiveWebsiteProps) {
         <span className={`text-[10px] font-mono uppercase tracking-widest block font-bold text-center ${theme === 'dark' ? 'text-slate-500' : 'text-gray-400'}`}>Trusted by Elite Partners & Creators</span>
         
         {/* Row 1 - Left to Right */}
-        <div className="flex pt-4">
-          <motion.div 
+        <div className="flex pt-4 overflow-hidden">
+          <motion.div
             animate={{ x: ["0%", "-50%"] }}
             transition={{
               duration: 25,
               ease: "linear",
               repeat: Infinity,
             }}
-            className={`flex items-center gap-x-16 text-3xl sm:text-5xl font-serif font-bold w-max pr-16 ${theme === 'dark' ? 'text-slate-700 hover:text-slate-500' : 'text-gray-300 hover:text-gray-400'}`}
+            className={`flex w-max text-3xl sm:text-5xl font-serif font-bold ${theme === 'dark' ? 'text-slate-700 hover:text-slate-500' : 'text-gray-300 hover:text-gray-400'}`}
           >
-            {[...BRANDS_ROW_1, ...BRANDS_ROW_1].map((logo, index) => (
-              <span key={index} className="transition-colors select-none shrink-0 cursor-default">
-                {logo}
-              </span>
+            {[0, 1].map((group) => (
+              <div key={group} aria-hidden={group === 1} className="flex items-center gap-x-16 pr-16 shrink-0">
+                {[...BRANDS_ROW_1, ...BRANDS_ROW_1, ...BRANDS_ROW_1].map((logo, index) => (
+                  <span key={index} className="transition-colors select-none shrink-0 cursor-default">
+                    {logo}
+                  </span>
+                ))}
+              </div>
             ))}
           </motion.div>
         </div>
 
         {/* Row 2 - Right to Left */}
-        <div className="flex pb-4">
-          <motion.div 
+        <div className="flex pb-4 overflow-hidden">
+          <motion.div
             animate={{ x: ["-50%", "0%"] }}
             transition={{
               duration: 30,
               ease: "linear",
               repeat: Infinity,
             }}
-            className={`flex items-center gap-x-16 text-3xl sm:text-5xl font-serif font-bold w-max pr-16 ${theme === 'dark' ? 'text-slate-800 hover:text-slate-600' : 'text-gray-200 hover:text-gray-300'}`}
+            className={`flex w-max text-3xl sm:text-5xl font-serif font-bold ${theme === 'dark' ? 'text-slate-800 hover:text-slate-600' : 'text-gray-200 hover:text-gray-300'}`}
           >
-            {[...BRANDS_ROW_2, ...BRANDS_ROW_2].map((logo, index) => (
-              <span key={index} className="transition-colors select-none shrink-0 cursor-default">
-                {logo}
-              </span>
+            {[0, 1].map((group) => (
+              <div key={group} aria-hidden={group === 1} className="flex items-center gap-x-16 pr-16 shrink-0">
+                {[...BRANDS_ROW_2, ...BRANDS_ROW_2, ...BRANDS_ROW_2].map((logo, index) => (
+                  <span key={index} className="transition-colors select-none shrink-0 cursor-default">
+                    {logo}
+                  </span>
+                ))}
+              </div>
             ))}
           </motion.div>
         </div>
