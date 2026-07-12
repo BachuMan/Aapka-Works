@@ -378,21 +378,8 @@ export default function LiveWebsite({ theme, toggleTheme }: LiveWebsiteProps) {
           </motion.div>
 
           <div className="pt-10 flex flex-col items-center justify-center gap-3">
-            <div className="flex -space-x-3">
-              {[1, 2, 3, 4, 5].map((i) => (
-                <motion.div 
-                  key={i} 
-                  initial={{ opacity: 0, x: -10 }}
-                  animate={!isLoading ? { opacity: 1, x: 0 } : {}}
-                  transition={{ delay: 0.8 + (i * 0.1) }}
-                  className={`w-10 h-10 rounded-full border-2 border-white bg-gray-100 flex items-center justify-center overflow-hidden shadow-sm z-[${10-i}]`}
-                >
-                  <img src={`https://i.pravatar.cc/100?img=${i + 10}`} alt="Avatar" className="w-full h-full object-cover" />
-                </motion.div>
-              ))}
-            </div>
-            <div className={`text-xs font-medium ${theme === 'dark' ? 'text-slate-400' : 'text-gray-500'}`}>
-              Trusted by <strong className={`font-bold ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>100+</strong> top creators & brands
+            <div className={`text-sm sm:text-base font-bold tracking-tight ${theme === 'dark' ? 'text-slate-200' : 'text-gray-700'}`}>
+              Trusted by <strong className={`font-extrabold ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>100+</strong> top creators &amp; brands
             </div>
           </div>
         </div>
