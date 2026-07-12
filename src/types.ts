@@ -35,8 +35,8 @@ export interface SiteNode {
 export const CASE_STUDIES: CaseStudy[] = [
   {
     id: "swiggy",
-    title: "Swiggy Mimicry Campaign",
-    subtitle: "How a creative mimicry execution captured mainstream attention and went viral across major news publications.",
+    title: "Swiggy",
+    subtitle: "Mimicry campaign that gained attention and appeared across news platforms.",
     tagline: "Featured on leading national news platforms",
     category: "Viral Marketing & PR",
     metrics: "Mainstream News Features",
@@ -57,8 +57,8 @@ export const CASE_STUDIES: CaseStudy[] = [
   },
   {
     id: "canva",
-    title: "Canva Creator Campaign",
-    subtitle: "A masterclass in creator-led growth engine, driving eye-watering view tallies and genuine adoption.",
+    title: "Canva",
+    subtitle: "Creator-led campaign with 200M+ views generated.",
     tagline: "200M+ Views Generated",
     category: "Creator-Led Growth",
     metrics: "200M+ Views",
@@ -79,8 +79,8 @@ export const CASE_STUDIES: CaseStudy[] = [
   },
   {
     id: "vanity",
-    title: "Vanity Social Scaling",
-    subtitle: "Massive scale-up of raw follower base via robust organic content pillars and viral storytelling structures.",
+    title: "Vanity",
+    subtitle: "Scaled the platform from approx. 1.25L to 4.5L+ followers.",
     tagline: "Scaled 125K to 450K+ Followers",
     category: "Audience Scaling",
     metrics: "3.6x Follower Growth",
@@ -101,8 +101,8 @@ export const CASE_STUDIES: CaseStudy[] = [
   },
   {
     id: "banter-tv",
-    title: "Banter TV Explosive Growth",
-    subtitle: "Zero to hero in under 18 months, crafting a premium digital pop-culture channel from scratch.",
+    title: "Banter TV",
+    subtitle: "Built major growth within 1.5 years.",
     tagline: "Major exponential growth in 1.5 Years",
     category: "IP & Channel Launch",
     metrics: "18-Month Hyper-Growth",
@@ -124,7 +124,7 @@ export const CASE_STUDIES: CaseStudy[] = [
   {
     id: "hapka",
     title: "Hapka by Aapka Jags",
-    subtitle: "Creating a successful creator consumer brand and optimizing real-world business performance.",
+    subtitle: "Improved visibility, growth and business performance.",
     tagline: "Skyrocketed local visibility & sales",
     category: "Brand Build & Launch",
     metrics: "Direct Sales Velocity Boost",
@@ -145,8 +145,8 @@ export const CASE_STUDIES: CaseStudy[] = [
   },
   {
     id: "personal-youtube",
-    title: "Personal YouTube Optimization",
-    subtitle: "Niche validation and highly focused growth on a highly premium, storytelling channel.",
+    title: "Personal YouTube",
+    subtitle: "50K+ subscribers added with approx. 80 videos.",
     tagline: "Added 50K+ Subscribers with 80 Videos",
     category: "Organic Search & SEO",
     metrics: "50,000+ Subs (80 High-Value Videos)",
@@ -173,53 +173,47 @@ export const CONSULTATION_PLANS: PricingPlan[] = [
     name: "Consultation Call",
     price: "₹3,999 – ₹9,999",
     features: [
-      "Deep Profile Audit & Biographies Overhaul",
-      "Content Direction & Algorithmic Diagnosis",
-      "Immediate Actionable Growth Roadmap",
-      "Target Platform Competitor Analysis",
-      "60-Min Focused Live Q&A Session"
+      "Profile audit",
+      "Content direction",
+      "Growth roadmap",
+      "Platform analysis",
+      "Q&A session"
     ],
     details: "Ideal for founders, creators & businesses needing instant direction and clarity without full monthly retainers.",
     bestVal: false
   },
   {
     id: "content-10",
-    name: "10 Ideas Pack",
+    name: "10 Ideas",
     price: "₹25,000",
     features: [
-      "10 High-Concept Content Hooks & Prompts",
-      "Custom Scripting Templates & Formatting",
-      "IP Creation & Format Design Suggestions",
-      "Trend Association Guidelines",
-      "Distribution Blueprint"
+      "Concepts",
+      "Scripts",
+      "IP creation"
     ],
     details: "Concepts, complete script drafts, and Intellectual Property creation templates ready for production.",
     bestVal: false
   },
   {
     id: "content-20",
-    name: "20 Ideas Pack",
+    name: "20 Ideas",
     price: "₹50,000",
     features: [
-      "20 Premium Viral Angles & Hook Variations",
-      "Custom Scripting + Production Prep Sheets",
-      "2 Main Recurring IP Formats Engineered",
-      "Sound Design & VFX Cue Directions",
-      "Bi-Weekly Strategy Alignment Sync"
+      "Concepts",
+      "Scripts",
+      "IP creation"
     ],
     details: "Double the concepts, complete production blueprints, and two proprietary IP format conceptualizations.",
     bestVal: true
   },
   {
     id: "content-30",
-    name: "30 Ideas Pack",
+    name: "30 Ideas",
     price: "₹75,000",
     features: [
-      "30 Core Viral Angles (A Full Month's Supply)",
-      "High-converting Scripts optimized for retention",
-      "3 Custom Proprietary IP Formats Created",
-      "Competitor Swat-Analysis Overlays",
-      "Priority Access Sync Support Channels"
+      "Concepts",
+      "Scripts",
+      "IP creation"
     ],
     details: "An exhaustive content strategy engine mapped across your entire month. Complete creative protection.",
     bestVal: false
@@ -229,57 +223,55 @@ export const CONSULTATION_PLANS: PricingPlan[] = [
 export const MANAGEMENT_PLANS: PricingPlan[] = [
   {
     id: "starter",
-    name: "Starter Management",
+    name: "Starter",
     price: "₹70,000",
     period: "month",
     features: [
-      "8 Custom Reels / Short Videos",
-      "2 Premium Carousels / Static Guides",
-      "10 Highly Engaging Instagram/YT Stories",
-      "Custom Social Media Feed Strategy Docs",
-      "Dynamic Content Calendar Scheduling",
-      "Full Script Drafts & Script Doctoring",
-      "Advanced Performance Analytics Review",
-      "Monthly KPI Progress Review Sync"
+      "6–8 Reels",
+      "2–4 Carousels",
+      "10–12 Stories",
+      "Strategy",
+      "Calendar",
+      "Scripts",
+      "Analysis",
+      "Monthly review"
     ],
     details: "Ideal for growing personal brands, startups, and creators building their initial modern digital footprint.",
     bestVal: false
   },
   {
     id: "growth",
-    name: "Growth Engine",
+    name: "Growth",
     price: "₹1,20,000",
     period: "month",
     features: [
-      "15 Custom Reels / Short Videos",
-      "4 Bespoke High-Intent Carousels",
-      "20 Interactive Stories with polls/Q&A",
-      "Comprehensive Digital Brand Strategy Map",
-      "Rigorous Content Calendar Management",
-      "Detailed Scripts with Visual/Audio directions",
-      "Strategic Shoot Planning (Angles, Setups, Hooks)",
-      "In-depth Monthly Performance Analysis Reports",
-      "Monthly Growth Engine Goal Alignment Sync"
+      "15 Reels",
+      "5–6 Carousels",
+      "20–24 Stories",
+      "Strategy",
+      "Calendar",
+      "Shoot planning",
+      "Scripts",
+      "Analysis",
+      "Monthly review"
     ],
     details: "Our most popular tier. Perfect for established brands looking to dominate video landscapes and convert attention.",
     bestVal: true
   },
   {
     id: "scale",
-    name: "Scale Omnipresence",
+    name: "Scale",
     price: "₹1,75,000",
     period: "month",
     features: [
-      "24 High-Production Reels / Short Videos",
-      "8 Premium Custom Carousels / Educational Guides",
-      "30 Interactive Channel Stories (Omnipresent)",
-      "Full Hands-off Channel Management",
-      "Multi-platform Syndication (Reels, TikTok, YT Shorts)",
-      "Complete Scriptwriting & Teleprompter Prep",
-      "Direct Video Director Shoots Coordination",
-      "Advanced Audience Demographics Analytics",
-      "Direct Real-time WhatsApp Growth Consulting",
-      "Competitor Counter-Strategy Tracking"
+      "24 Reels",
+      "8–10 Carousels",
+      "30–40 Stories",
+      "Complete management",
+      "Shoots",
+      "Analytics",
+      "Performance analysis",
+      "Growth consulting"
     ],
     details: "The ultimate hands-off social solution. Complete creation, distribution, strategy and omnipresent scaling.",
     bestVal: false

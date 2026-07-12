@@ -1,12 +1,39 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Caveat:wght@700&display=swap');
 @import "tailwindcss";
 
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --font-serif: "Playfair Display", ui-serif, Georgia, serif;
+  --font-handwriting: "Caveat", cursive;
+}
+
+@layer base {
+  :root.dark {
+    /* Mapped gray palette for dark mode */
+    --color-slate-50: #0a0a0b;
+    --color-gray-50: #121214;
+    --color-gray-100: #27272a;
+    --color-gray-200: #3f3f46;
+    --color-gray-300: #52525b;
+    --color-gray-400: #a1a1aa;
+    --color-gray-500: #a1a1aa;
+    --color-gray-600: #d4d4d8;
+    --color-gray-700: #e4e4e7;
+    --color-gray-800: #f4f4f5;
+    --color-gray-900: #ffffff;
+    
+    --color-rose-50: #4c0519;
+    --color-rose-100: #881337;
+    --color-rose-200: #be123c;
+  }
 }
 
 @layer utilities {
+  :root.dark .bg-white {
+    background-color: #18181b !important;
+  }
+  
   @keyframes fadeIn {
     from { opacity: 0; transform: translateY(8px); }
     to { opacity: 1; transform: translateY(0); }
@@ -32,14 +59,14 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #0A0A0B;
+  background: var(--color-slate-50);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #27272A;
+  background: var(--color-gray-200);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #3F3F46;
+  background: var(--color-gray-300);
 }
