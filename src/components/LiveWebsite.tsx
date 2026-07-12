@@ -113,7 +113,7 @@ export default function LiveWebsite({ theme, toggleTheme }: LiveWebsiteProps) {
                 className="relative z-10"
               >
                 <img 
-                  src={theme === 'dark' ? "/Layer 1_red.png" : "/logo.png"} 
+                  src={theme === 'dark' ? "/logo-red.png" : "/logo.png"} 
                   alt="Aapka Works Logo" 
                   className={`h-24 sm:h-28 w-auto object-contain transition-all drop-shadow-xl`}
                   referrerPolicy="no-referrer"
@@ -162,7 +162,7 @@ export default function LiveWebsite({ theme, toggleTheme }: LiveWebsiteProps) {
           <div className="flex items-center gap-2">
             <motion.div whileHover={{ scale: 1.05 }} className="cursor-pointer" onClick={() => window.scrollTo(0, 0)}>
               <img 
-                src={theme === 'dark' ? "/Layer 1_red.png" : "/logo.png"} 
+                src={theme === 'dark' ? "/logo-red.png" : "/logo.png"} 
                 alt="Aapka Works Logo" 
                 className={`transition-all drop-shadow-md ${scrolled ? 'h-[48px] sm:h-[56px]' : 'h-[72px] sm:h-[88px]'}`}
                 referrerPolicy="no-referrer"
@@ -225,7 +225,7 @@ export default function LiveWebsite({ theme, toggleTheme }: LiveWebsiteProps) {
             >
               <div className="p-6 flex items-center justify-between border-b border-gray-200/20">
                 <img 
-                  src={theme === 'dark' ? "/Layer 1_red.png" : "/logo.png"} 
+                  src={theme === 'dark' ? "/logo-red.png" : "/logo.png"} 
                   alt="Aapka Works Logo" 
                   className="h-10 w-auto object-contain"
                 />
@@ -521,7 +521,7 @@ export default function LiveWebsite({ theme, toggleTheme }: LiveWebsiteProps) {
           <div className="md:col-span-2 flex flex-col justify-between h-full">
             <div className="bg-gray-100 border border-gray-200 shadow-sm rounded-3xl overflow-hidden h-full min-h-[300px] relative group">
               <img 
-                src="/WhatsApp Image 2026-07-06 at 10.34.29 PM.jpeg" 
+                src="/jagjyot-about.jpeg"
                 alt="Jagjyot Singh" 
                 className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
               />
@@ -717,7 +717,7 @@ export default function LiveWebsite({ theme, toggleTheme }: LiveWebsiteProps) {
         <div className={`max-w-5xl mx-auto flex flex-col items-center gap-6 ${theme === 'dark' ? 'text-slate-400' : 'text-gray-500'}`}>
           <div className="space-y-4 text-center flex flex-col items-center group cursor-pointer" onClick={() => window.scrollTo(0, 0)}>
             <img 
-              src={theme === 'dark' ? "/Layer 1_red.png" : "/logo.png"} 
+              src={theme === 'dark' ? "/logo-red.png" : "/logo.png"} 
               alt="Aapka Works Logo" 
               className={`h-[64px] w-auto object-contain transition-all duration-300 opacity-70 group-hover:opacity-100 drop-shadow-sm ${theme === 'dark' ? '' : 'grayscale-[0.8] group-hover:grayscale-0'}`}
               referrerPolicy="no-referrer"
