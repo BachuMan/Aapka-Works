@@ -97,8 +97,26 @@ function getSheet_() {
     sheet.getRange(1, 1, 1, HEADERS.length).setFontWeight("bold");
     sheet.setFrozenRows(1);
   }
+  removeObsoleteColumns_(sheet);              // auto-drop retired Preferred Date/Time columns
   sheet.getRange("E:E").setNumberFormat("@"); // keep Phone column as plain text
   return sheet;
+}
+
+/**
+ * Deletes the retired "Preferred Date" / "Preferred Time" columns if they still
+ * exist (matched by header name, so any columns you added yourself are untouched).
+ * Runs every call but is a no-op once they're gone.
+ */
+function removeObsoleteColumns_(sheet) {
+  var obsolete = ["Preferred Date", "Preferred Time"];
+  var lastCol = sheet.getLastColumn();
+  if (lastCol < 1) return;
+  var headers = sheet.getRange(1, 1, 1, lastCol).getValues()[0];
+  for (var c = headers.length - 1; c >= 0; c--) {   // right-to-left so indices stay valid
+    if (obsolete.indexOf(String(headers[c]).trim()) !== -1) {
+      sheet.deleteColumn(c + 1);
+    }
+  }
 }
 
 function json_(obj) {

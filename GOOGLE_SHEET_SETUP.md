@@ -2,8 +2,8 @@
 
 Every time someone submits the form, a new row is added to your Google Sheet with these columns:
 
-| Submitted At | Interest Category | Name | Email | Phone | Brief | Preferred Date | Preferred Time |
-|---|---|---|---|---|---|---|---|
+| Submitted At | Interest Category | Name | Email | Phone | Brief |
+|---|---|---|---|---|---|
 
 This uses a **Google Apps Script Web App** as a tiny backend — no servers, no cost, and the data lands straight in a sheet you own. It takes about 3 minutes.
 
