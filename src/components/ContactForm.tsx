@@ -73,9 +73,7 @@ export default function ContactForm({ preselectedPackage = "consultation", theme
       name: formData.name.trim(),
       email: formData.email.trim(),
       phone: `${formData.countryCode} ${formData.phone}`,
-      brief: formData.details.trim(),
-      selectedDate: selectedDay ? `June ${selectedDay}, 2026` : "",
-      selectedTime: selectedTimeSlot ?? ""
+      brief: formData.details.trim()
     };
 
     try {

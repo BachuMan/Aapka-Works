@@ -13,7 +13,7 @@
  *   4. The /exec URL goes into the site's .env.local as VITE_SHEET_ENDPOINT.
  */
 
-var VERSION = "3-phone-text";
+var VERSION = "4-no-preferred-datetime";
 var SHEET_NAME = "Strategy Call Leads";
 var HEADERS = [
   "Submitted At",
@@ -21,9 +21,7 @@ var HEADERS = [
   "Name",
   "Email",
   "Phone",
-  "Brief",
-  "Preferred Date",
-  "Preferred Time"
+  "Brief"
 ];
 
 /** Receives the POST from the website and stores it. */
@@ -52,9 +50,7 @@ function doGet(e) {
       name: "SELFTEST — safe to delete",
       email: "selftest@example.com",
       phone: testPhone,
-      brief: "Automated self-test row",
-      selectedDate: "",
-      selectedTime: ""
+      brief: "Automated self-test row"
     });
     var cell = sheet.getRange(sheet.getLastRow(), 5); // Phone column
     var display = cell.getDisplayValue();
@@ -84,9 +80,7 @@ function writeRow_(sheet, data) {
     data.name || "",
     data.email || "",
     data.phone || "",
-    data.brief || "",
-    data.selectedDate || "",
-    data.selectedTime || ""
+    data.brief || ""
   ]]);
   SpreadsheetApp.flush();
 }
