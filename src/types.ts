@@ -171,7 +171,7 @@ export const CONSULTATION_PLANS: PricingPlan[] = [
   {
     id: "consultation",
     name: "Consultation Call",
-    price: "₹3,999 – ₹9,999",
+    price: "₹1,999 – ₹6,999",
     features: [
       "Profile audit",
       "Content direction",
@@ -185,7 +185,7 @@ export const CONSULTATION_PLANS: PricingPlan[] = [
   {
     id: "content-10",
     name: "10 Ideas",
-    price: "₹25,000",
+    price: "₹15,000",
     features: [
       "Concepts",
       "Scripts",
@@ -197,7 +197,7 @@ export const CONSULTATION_PLANS: PricingPlan[] = [
   {
     id: "content-20",
     name: "20 Ideas",
-    price: "₹50,000",
+    price: "₹30,000",
     features: [
       "Concepts",
       "Scripts",
@@ -209,7 +209,7 @@ export const CONSULTATION_PLANS: PricingPlan[] = [
   {
     id: "content-30",
     name: "30 Ideas",
-    price: "₹75,000",
+    price: "₹45,000",
     features: [
       "Concepts",
       "Scripts",
@@ -224,7 +224,7 @@ export const MANAGEMENT_PLANS: PricingPlan[] = [
   {
     id: "starter",
     name: "Starter",
-    price: "₹70,000",
+    price: "₹35,000",
     period: "month",
     features: [
       "6–8 Reels",
@@ -242,12 +242,12 @@ export const MANAGEMENT_PLANS: PricingPlan[] = [
   {
     id: "growth",
     name: "Growth",
-    price: "₹1,20,000",
+    price: "₹70,000",
     period: "month",
     features: [
-      "15 Reels",
+      "12 Reels",
       "5–6 Carousels",
-      "20–24 Stories",
+      "15 Stories",
       "Strategy",
       "Calendar",
       "Shoot planning",
@@ -261,10 +261,10 @@ export const MANAGEMENT_PLANS: PricingPlan[] = [
   {
     id: "scale",
     name: "Scale",
-    price: "₹1,75,000",
+    price: "₹1,00,000",
     period: "month",
     features: [
-      "24 Reels",
+      "20 Reels",
       "8–10 Carousels",
       "30–40 Stories",
       "Complete management",
@@ -342,7 +342,7 @@ export const SEO_DATA = {
     "logo": "https://aapkaworks.com/logo.png",
     "url": "https://aapkaworks.com",
     "telephone": "+91-0000000000",
-    "priceRange": "INR ₹3,999 - ₹1,75,000",
+    "priceRange": "INR ₹1,999 - ₹1,00,000",
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "Mumbai",

@@ -4,6 +4,43 @@ import CaseStudyDetail from "./CaseStudyDetail";
 import ContactForm from "./ContactForm";
 import { ArrowRight, MessageSquare, Check, CheckCircle, Moon, Sun, Mail, Instagram, Menu, X, Phone } from "lucide-react";
 import { motion, useInView, useSpring, useTransform, AnimatePresence } from "motion/react";
+import { BRAND_LOGOS } from "../brandLogos";
+
+type Brand = { name: string; logo?: keyof typeof BRAND_LOGOS };
+
+/**
+ * A single marquee entry. Brands with a logo glyph render as an inline SVG that
+ * inherits the row colour; the rest fall back to a wordmark at a matched optical
+ * size. `leading-[1.35]` keeps serif descenders (g, p, y) clear of the row's
+ * overflow-hidden clip.
+ */
+function renderBrandMark(brand: Brand, key: number) {
+  const path = brand.logo ? BRAND_LOGOS[brand.logo] : undefined;
+
+  if (path) {
+    return (
+      <svg
+        key={key}
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        role="img"
+        aria-label={brand.name}
+        className="h-10 w-10 sm:h-16 sm:w-16 shrink-0 transition-colors"
+      >
+        <path d={path} />
+      </svg>
+    );
+  }
+
+  return (
+    <span
+      key={key}
+      className="text-3xl sm:text-5xl font-serif font-bold leading-[1.35] shrink-0 select-none cursor-default transition-colors"
+    >
+      {brand.name}
+    </span>
+  );
+}
 
 function AnimatedCounter({ from, to, suffix = "", decimals = 0 }: { from: number, to: number, suffix?: string, decimals?: number }) {
   const ref = useRef<HTMLSpanElement>(null);
@@ -32,7 +69,7 @@ interface LiveWebsiteProps {
 export default function LiveWebsite({ theme, toggleTheme }: LiveWebsiteProps) {
   const [selectedCase, setSelectedCase] = useState<CaseStudy | null>(null);
   const [pricingMode, setPricingMode] = useState<"consult" | "management">("consult");
-  const [selectedPlanDetail, setSelectedPlanDetail] = useState<string>("consultation");
+  const [selectedPlanDetail, setSelectedPlanDetail] = useState<string>("clarity-call");
   const [isLoading, setIsLoading] = useState(true);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -66,8 +103,22 @@ export default function LiveWebsite({ theme, toggleTheme }: LiveWebsiteProps) {
     scrollToSection("booking-form");
   };
 
-  const BRANDS_ROW_1 = ["Amazon", "Google", "Meta", "YouTube", "Canva"];
-  const BRANDS_ROW_2 = ["ChatGPT", "Netflix", "BGMI", "Pant Project", "Noor"];
+  // Row 1: brands we have a real logo glyph for. Row 2: brands rendered as wordmarks.
+  const BRANDS_ROW_1: Brand[] = [
+    { name: "Amazon", logo: "amazon" }, { name: "Google", logo: "google" },
+    { name: "Meta", logo: "meta" }, { name: "YouTube", logo: "youtube" },
+    { name: "Canva", logo: "canva" }, { name: "Visa", logo: "visa" },
+    { name: "Adobe", logo: "adobe" }, { name: "Airtel", logo: "airtel" },
+    { name: "Flipkart", logo: "flipkart" }, { name: "Swiggy", logo: "swiggy" },
+    { name: "Tata", logo: "tata" }, { name: "ChatGPT", logo: "openai" },
+    { name: "Netflix", logo: "netflix" }, { name: "Prime Video", logo: "primevideo" }
+  ];
+  const BRANDS_ROW_2: Brand[] = [
+    { name: "Head & Shoulders" }, { name: "Garnier" }, { name: "Cadbury" },
+    { name: "Kwality Wall's" }, { name: "Philips" }, { name: "Nykaa" },
+    { name: "Petronas" }, { name: "Free Fire" }, { name: "Jio Hotstar" },
+    { name: "BGMI" }, { name: "Pant Project" }
+  ];
 
   return (
     <>
@@ -140,18 +191,13 @@ export default function LiveWebsite({ theme, toggleTheme }: LiveWebsiteProps) {
 
     <div className={`min-h-screen font-sans relative overflow-x-hidden transition-colors duration-300 ${theme === 'dark' ? 'bg-slate-900 text-white' : 'bg-slate-50 text-gray-900'}`}>
       
-      {/* Red Promotional Strip */}
-      <div className="fixed top-0 left-0 w-full bg-[#E61D24] text-white text-center py-1.5 sm:py-2 text-[10px] sm:text-xs font-bold uppercase tracking-widest z-50">
-        Now accepting Q3 projects — Limited consultation slots available
-      </div>
-
       {/* Background Gradients */}
       <div className="absolute top-0 left-0 w-full h-[600px] pointer-events-none opacity-30 transition-opacity duration-300">
         <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[80%] bg-yellow-200/40 rounded-full blur-[100px]" />
         <div className="absolute top-[-5%] right-[-10%] w-[50%] h-[70%] bg-rose-200/50 rounded-full blur-[120px]" />
       </div>
 
-      <header className={`fixed top-[32px] sm:top-[40px] w-full z-40 transition-all duration-300 ${
+      <header className={`fixed top-0 w-full z-40 transition-all duration-300 ${
         scrolled 
           ? `py-2 sm:py-3 shadow-sm backdrop-blur-md border-b ${
               theme === 'dark' ? 'bg-slate-900/95 border-slate-800' : 'bg-white/95 border-gray-200'
@@ -306,28 +352,15 @@ export default function LiveWebsite({ theme, toggleTheme }: LiveWebsiteProps) {
         </div>
 
         <div className="max-w-4xl mx-auto text-center space-y-8 relative z-10">
-          <div className="flex flex-col items-center justify-center gap-4">
-            <motion.div 
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={!isLoading ? { scale: 1, opacity: 1 } : {}}
-              transition={{ delay: 0.2 }}
-              className={`inline-flex justify-center items-center gap-2 px-4 py-2 border shadow-sm rounded-full text-[11px] font-semibold transition-all hover:shadow-md ${theme === 'dark' ? 'bg-slate-800 border-slate-700 text-slate-200 hover:border-slate-600' : 'bg-white border-gray-200/60 text-gray-800 hover:border-gray-300'}`}
-            >
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-rose-500"></span>
-              </span>
-              <span>Booking Q3 partnerships — 2 spots left</span>
-            </motion.div>
-          </div>
-
           <div className="space-y-4">
             <h2 className="text-3xl sm:text-4xl font-serif text-gray-400 tracking-tight max-w-3xl mx-auto italic">
               "Aapka Kaam Hum Dekh Lenge"
             </h2>
             <h2 className={`text-5xl sm:text-7xl font-serif tracking-tight leading-[1.05] max-w-3xl mx-auto ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>
-              Helping Creators & Brands Build Content That <br/>
-              <span className="text-[#E61D24] relative inline-block mt-2">
+              Helping Creators &{" "}<br className="hidden sm:inline"/>
+              Brands Build Content{" "}<br className="hidden sm:inline"/>
+              That{" "}
+              <span className="text-[#E61D24] relative inline-block">
                 <motion.span 
                   initial={{ opacity: 0, x: -20 }}
                   animate={!isLoading ? { opacity: 1, x: 0 } : {}}
@@ -431,46 +464,38 @@ export default function LiveWebsite({ theme, toggleTheme }: LiveWebsiteProps) {
         <span className={`text-[10px] font-mono uppercase tracking-widest block font-bold text-center ${theme === 'dark' ? 'text-slate-500' : 'text-gray-400'}`}>Trusted by Elite Partners & Creators</span>
         
         {/* Row 1 - Left to Right */}
-        <div className="flex pt-4 overflow-hidden">
+        <div className="flex py-2 overflow-hidden">
           <motion.div
             animate={{ x: ["0%", "-50%"] }}
             transition={{
-              duration: 25,
+              duration: 130,
               ease: "linear",
               repeat: Infinity,
             }}
-            className={`flex w-max text-3xl sm:text-5xl font-serif font-bold ${theme === 'dark' ? 'text-slate-700 hover:text-slate-500' : 'text-gray-300 hover:text-gray-400'}`}
+            className={`flex w-max ${theme === 'dark' ? 'text-slate-700 hover:text-slate-500' : 'text-gray-300 hover:text-gray-400'}`}
           >
             {[0, 1].map((group) => (
               <div key={group} aria-hidden={group === 1} className="flex items-center gap-x-16 pr-16 shrink-0">
-                {[...BRANDS_ROW_1, ...BRANDS_ROW_1, ...BRANDS_ROW_1].map((logo, index) => (
-                  <span key={index} className="transition-colors select-none shrink-0 cursor-default">
-                    {logo}
-                  </span>
-                ))}
+                {BRANDS_ROW_1.map((brand, index) => renderBrandMark(brand, index))}
               </div>
             ))}
           </motion.div>
         </div>
 
         {/* Row 2 - Right to Left */}
-        <div className="flex pb-4 overflow-hidden">
+        <div className="flex py-2 overflow-hidden">
           <motion.div
             animate={{ x: ["-50%", "0%"] }}
             transition={{
-              duration: 30,
+              duration: 160,
               ease: "linear",
               repeat: Infinity,
             }}
-            className={`flex w-max text-3xl sm:text-5xl font-serif font-bold ${theme === 'dark' ? 'text-slate-800 hover:text-slate-600' : 'text-gray-200 hover:text-gray-300'}`}
+            className={`flex w-max ${theme === 'dark' ? 'text-slate-800 hover:text-slate-600' : 'text-gray-200 hover:text-gray-300'}`}
           >
             {[0, 1].map((group) => (
               <div key={group} aria-hidden={group === 1} className="flex items-center gap-x-16 pr-16 shrink-0">
-                {[...BRANDS_ROW_2, ...BRANDS_ROW_2, ...BRANDS_ROW_2].map((logo, index) => (
-                  <span key={index} className="transition-colors select-none shrink-0 cursor-default">
-                    {logo}
-                  </span>
-                ))}
+                {BRANDS_ROW_2.map((brand, index) => renderBrandMark(brand, index))}
               </div>
             ))}
           </motion.div>

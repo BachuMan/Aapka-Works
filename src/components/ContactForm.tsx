@@ -11,7 +11,7 @@ interface ContactFormProps {
   theme?: "light" | "dark";
 }
 
-export default function ContactForm({ preselectedPackage = "consultation", theme = "light" }: ContactFormProps) {
+export default function ContactForm({ preselectedPackage = "clarity-call", theme = "light" }: ContactFormProps) {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -205,7 +205,7 @@ export default function ContactForm({ preselectedPackage = "consultation", theme
         <button 
           onClick={() => {
             setIsBooked(false);
-            setFormData({ name: "", email: "", countryCode: "+91", phone: "", details: "", packageChoice: "consultation" });
+            setFormData({ name: "", email: "", countryCode: "+91", phone: "", details: "", packageChoice: "clarity-call" });
           }}
           className={`font-medium text-xs px-6 py-2.5 rounded-xl border shadow-sm transition-all cursor-pointer ${theme === 'dark' ? 'bg-slate-700 hover:bg-slate-600 text-white border-slate-600' : 'bg-white hover:bg-gray-50 text-gray-900 border-gray-200'}`}
         >
@@ -240,11 +240,13 @@ export default function ContactForm({ preselectedPackage = "consultation", theme
               onChange={handleInputChange}
               className={`w-full border text-xs p-3 rounded-xl focus:outline-none focus:ring-1 focus:ring-rose-500/50 ${theme === 'dark' ? 'bg-slate-700 border-slate-600 text-white hover:border-slate-500' : 'bg-white border-gray-200 text-gray-900 hover:border-gray-300'}`}
             >
-              <option value="consultation">Consultation Call (₹3,999 - ₹9,999)</option>
-              <option value="content-support">Content Support Packs (₹25k - ₹75k)</option>
-              <option value="starter-mgmt">Starter Social Management (₹70k/mo)</option>
-              <option value="growth-mgmt">Growth Social Management (₹1.2L/mo)</option>
-              <option value="scale-mgmt">Scale Omnipresence Retainer (₹1.75L/mo)</option>
+              <option value="clarity-call">Creator Clarity Call (₹1,999)</option>
+              <option value="growth-session">Growth Session (₹3,999)</option>
+              <option value="scale-intensive">Scale &amp; Monetise Intensive (₹6,999)</option>
+              <option value="content-support">Content Support Packs (₹15k - ₹45k)</option>
+              <option value="starter-mgmt">Starter Social Management (₹35k/mo)</option>
+              <option value="growth-mgmt">Growth Social Management (₹70k/mo)</option>
+              <option value="scale-mgmt">Scale Omnipresence Retainer (₹1L/mo)</option>
             </select>
           </div>
 
