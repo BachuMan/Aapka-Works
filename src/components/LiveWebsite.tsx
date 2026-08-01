@@ -101,9 +101,9 @@ export default function LiveWebsite({ theme, toggleTheme }: LiveWebsiteProps) {
   // Card ids that differ from the booking form's option values get mapped here;
   // consultation-call ids already match the form options directly.
   const PLAN_FORM_VALUES: Record<string, string> = {
-    "content-10": "content-support",
-    "content-20": "content-support",
-    "content-30": "content-support",
+    "content-10": "10-ideas",
+    "content-20": "20-ideas",
+    "content-30": "30-ideas",
     "starter": "starter-mgmt",
     "growth": "growth-mgmt",
     "scale": "scale-mgmt"

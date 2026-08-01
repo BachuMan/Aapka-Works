@@ -245,13 +245,21 @@ export default function ContactForm({ preselectedPackage = "clarity-call", theme
               onChange={handleInputChange}
               className={`w-full border text-xs p-3 rounded-xl focus:outline-none focus:ring-1 focus:ring-rose-500/50 ${theme === 'dark' ? 'bg-slate-700 border-slate-600 text-white hover:border-slate-500' : 'bg-white border-gray-200 text-gray-900 hover:border-gray-300'}`}
             >
-              <option value="clarity-call">Creator Clarity Call (₹1,999)</option>
-              <option value="growth-session">Growth Session (₹3,999)</option>
-              <option value="scale-intensive">Scale &amp; Monetise Intensive (₹6,999)</option>
-              <option value="content-support">Content Support Packs (₹15k - ₹45k)</option>
-              <option value="starter-mgmt">Starter Social Management (₹35k/mo)</option>
-              <option value="growth-mgmt">Growth Social Management (₹70k/mo)</option>
-              <option value="scale-mgmt">Scale Omnipresence Retainer (₹1L/mo)</option>
+              <optgroup label="Consultation Call">
+                <option value="clarity-call">Creator Clarity Call (₹1,999)</option>
+                <option value="growth-session">Growth Session (₹3,999)</option>
+                <option value="scale-intensive">Scale &amp; Monetise Intensive (₹6,999)</option>
+              </optgroup>
+              <optgroup label="Content Support">
+                <option value="10-ideas">10 Ideas (₹15,000)</option>
+                <option value="20-ideas">20 Ideas (₹30,000)</option>
+                <option value="30-ideas">30 Ideas (₹45,000)</option>
+              </optgroup>
+              <optgroup label="Full Social Media Management">
+                <option value="starter-mgmt">Starter (₹35,000/month)</option>
+                <option value="growth-mgmt">Growth (₹70,000/month)</option>
+                <option value="scale-mgmt">Scale (₹1,00,000/month)</option>
+              </optgroup>
             </select>
           </div>
 
