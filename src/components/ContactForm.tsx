@@ -11,6 +11,44 @@ interface ContactFormProps {
   theme?: "light" | "dark";
 }
 
+// Single source of truth for the interest-category dropdown AND what gets
+// written to the Google Sheet — keep in sync with the pricing section cards.
+const PACKAGE_GROUPS = [
+  {
+    label: "Consultation Call",
+    options: [
+      { value: "clarity-call", label: "Creator Clarity Call (₹1,999)" },
+      { value: "growth-session", label: "Growth Session (₹3,999)" },
+      { value: "scale-intensive", label: "Scale & Monetise Intensive (₹6,999)" }
+    ]
+  },
+  {
+    label: "Content Support",
+    options: [
+      { value: "10-ideas", label: "10 Ideas (₹15,000)" },
+      { value: "20-ideas", label: "20 Ideas (₹30,000)" },
+      { value: "30-ideas", label: "30 Ideas (₹45,000)" }
+    ]
+  },
+  {
+    label: "Full Social Media Management",
+    options: [
+      { value: "starter-mgmt", label: "Starter (₹35,000/month)" },
+      { value: "growth-mgmt", label: "Growth (₹70,000/month)" },
+      { value: "scale-mgmt", label: "Scale (₹1,00,000/month)" }
+    ]
+  }
+];
+
+// "20-ideas" -> "Content Support — 20 Ideas (₹30,000)"
+const packageLabel = (value: string): string => {
+  for (const group of PACKAGE_GROUPS) {
+    const opt = group.options.find(o => o.value === value);
+    if (opt) return `${group.label} — ${opt.label}`;
+  }
+  return value;
+};
+
 export default function ContactForm({ preselectedPackage = "clarity-call", theme = "light" }: ContactFormProps) {
   const [formData, setFormData] = useState({
     name: "",
@@ -74,7 +112,7 @@ export default function ContactForm({ preselectedPackage = "clarity-call", theme
 
     const payload = {
       timestamp: new Date().toISOString(),
-      interestCategory: formData.packageChoice,
+      interestCategory: packageLabel(formData.packageChoice),
       name: formData.name.trim(),
       email: formData.email.trim(),
       phone: `${formData.countryCode} ${formData.phone}`,
@@ -150,7 +188,7 @@ export default function ContactForm({ preselectedPackage = "clarity-call", theme
         <div className={`text-left border rounded-xl p-5 space-y-4 ${theme === 'dark' ? 'border-slate-600' : 'border-gray-200'}`}>
           <div className="flex justify-between items-center pb-4 border-b border-gray-200/20">
             <span className={theme === 'dark' ? 'text-slate-300' : 'text-gray-600'}>Package Selection</span>
-            <span className="font-semibold capitalize">{formData.packageChoice.replace("-", " ")}</span>
+            <span className="font-semibold text-right">{packageLabel(formData.packageChoice)}</span>
           </div>
           <div className="flex justify-between items-center font-bold text-lg">
             <span>Total</span>
@@ -199,7 +237,7 @@ export default function ContactForm({ preselectedPackage = "clarity-call", theme
           </div>
           <div className="flex justify-between">
             <span className={theme === 'dark' ? 'text-slate-500' : 'text-gray-500'}>SELECTED FORMAT:</span>
-            <span className={`capitalize font-semibold ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>{formData.packageChoice.replace("-", " ")}</span>
+            <span className={`font-semibold text-right ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>{packageLabel(formData.packageChoice)}</span>
           </div>
         </div>
 
@@ -245,21 +283,13 @@ export default function ContactForm({ preselectedPackage = "clarity-call", theme
               onChange={handleInputChange}
               className={`w-full border text-xs p-3 rounded-xl focus:outline-none focus:ring-1 focus:ring-rose-500/50 ${theme === 'dark' ? 'bg-slate-700 border-slate-600 text-white hover:border-slate-500' : 'bg-white border-gray-200 text-gray-900 hover:border-gray-300'}`}
             >
-              <optgroup label="Consultation Call">
-                <option value="clarity-call">Creator Clarity Call (₹1,999)</option>
-                <option value="growth-session">Growth Session (₹3,999)</option>
-                <option value="scale-intensive">Scale &amp; Monetise Intensive (₹6,999)</option>
-              </optgroup>
-              <optgroup label="Content Support">
-                <option value="10-ideas">10 Ideas (₹15,000)</option>
-                <option value="20-ideas">20 Ideas (₹30,000)</option>
-                <option value="30-ideas">30 Ideas (₹45,000)</option>
-              </optgroup>
-              <optgroup label="Full Social Media Management">
-                <option value="starter-mgmt">Starter (₹35,000/month)</option>
-                <option value="growth-mgmt">Growth (₹70,000/month)</option>
-                <option value="scale-mgmt">Scale (₹1,00,000/month)</option>
-              </optgroup>
+              {PACKAGE_GROUPS.map((group) => (
+                <optgroup key={group.label} label={group.label}>
+                  {group.options.map((opt) => (
+                    <option key={opt.value} value={opt.value}>{opt.label}</option>
+                  ))}
+                </optgroup>
+              ))}
             </select>
           </div>
 
