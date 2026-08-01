@@ -21,6 +21,7 @@ export interface PricingPlan {
   period?: string;
   features: string[];
   details?: string;
+  excludes?: string;
   bestVal?: boolean;
 }
 
@@ -169,19 +170,66 @@ export const CASE_STUDIES: CaseStudy[] = [
 
 export const CONSULTATION_PLANS: PricingPlan[] = [
   {
-    id: "consultation",
-    name: "Consultation Call",
-    price: "₹1,999 – ₹6,999",
+    id: "clarity-call",
+    name: "Creator Clarity Call",
+    price: "₹1,999",
     features: [
-      "Profile audit",
-      "Content direction",
-      "Growth roadmap",
-      "Platform analysis",
-      "Q&A session"
+      "45-minute one-on-one video call",
+      "Basic Instagram/YouTube page review",
+      "Niche and positioning clarity",
+      "Identification of 3–5 major content mistakes",
+      "Suggestions for content pillars",
+      "Posting-frequency guidance",
+      "Basic monetisation direction",
+      "Clear next steps for the following 15 days"
     ],
-    details: "Ideal for founders, creators & businesses needing instant direction and clarity without full monthly retainers.",
+    details: "Best for beginners and creators who feel confused about what to do next.",
+    excludes: "Does not include detailed scripts or a complete monthly calendar.",
     bestVal: false
   },
+  {
+    id: "growth-session",
+    name: "Growth Session",
+    price: "₹3,999",
+    features: [
+      "60-minute strategy call",
+      "Detailed profile and content audit",
+      "Analysis of recent high- and low-performing content",
+      "Audience and positioning clarity",
+      "3–5 content pillars",
+      "Hook and storytelling recommendations",
+      "Repeatable series and content-format suggestions",
+      "7 customised reel ideas",
+      "Branding and profile improvement suggestions",
+      "Written strategy summary after the call"
+    ],
+    details: "Best for creators and small brands already posting but struggling to grow.",
+    bestVal: true
+  },
+  {
+    id: "scale-intensive",
+    name: "Scale & Monetise Intensive",
+    price: "₹6,999",
+    features: [
+      "90-minute intensive call",
+      "Deep brand and content audit",
+      "Positioning and differentiation strategy",
+      "Audience and competitor analysis",
+      "Content funnel: reach, trust and conversion",
+      "Revenue and monetisation opportunities",
+      "Personal-brand positioning",
+      "15–20 customised content ideas",
+      "Recommendations for recurring content IPs",
+      "Platform and distribution strategy",
+      "30-day action roadmap",
+      "Detailed written strategy document"
+    ],
+    details: "Best for established creators, founders and businesses.",
+    bestVal: false
+  }
+];
+
+export const CONTENT_SUPPORT_PLANS: PricingPlan[] = [
   {
     id: "content-10",
     name: "10 Ideas",

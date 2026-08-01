@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { CheckCircle2, AlertTriangle, ArrowRight, CreditCard, Lock, Phone, Loader2 } from "lucide-react";
 
 // Google Apps Script Web App URL that appends submissions to the Google Sheet.
@@ -21,6 +21,11 @@ export default function ContactForm({ preselectedPackage = "clarity-call", theme
     packageChoice: preselectedPackage
   });
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+
+  // Keep the interest category in sync when the visitor picks a plan card above.
+  useEffect(() => {
+    setFormData(prev => ({ ...prev, packageChoice: preselectedPackage }));
+  }, [preselectedPackage]);
 
   // Country dial codes for the phone prefix selector (national number is always 10 digits).
   const countryCodes = [

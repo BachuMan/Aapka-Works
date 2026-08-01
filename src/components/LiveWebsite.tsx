@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { CASE_STUDIES, CONSULTATION_PLANS, MANAGEMENT_PLANS, CaseStudy } from "../types";
+import { CASE_STUDIES, CONSULTATION_PLANS, CONTENT_SUPPORT_PLANS, MANAGEMENT_PLANS, CaseStudy } from "../types";
 import CaseStudyDetail from "./CaseStudyDetail";
 import ContactForm from "./ContactForm";
 import { ArrowRight, MessageSquare, Check, CheckCircle, Moon, Sun, Mail, Instagram, Menu, X, Phone } from "lucide-react";
@@ -68,7 +68,7 @@ interface LiveWebsiteProps {
 
 export default function LiveWebsite({ theme, toggleTheme }: LiveWebsiteProps) {
   const [selectedCase, setSelectedCase] = useState<CaseStudy | null>(null);
-  const [pricingMode, setPricingMode] = useState<"consult" | "management">("consult");
+  const [pricingMode, setPricingMode] = useState<"consult" | "content" | "management">("consult");
   const [selectedPlanDetail, setSelectedPlanDetail] = useState<string>("clarity-call");
   const [isLoading, setIsLoading] = useState(true);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -98,8 +98,19 @@ export default function LiveWebsite({ theme, toggleTheme }: LiveWebsiteProps) {
     }
   };
 
+  // Card ids that differ from the booking form's option values get mapped here;
+  // consultation-call ids already match the form options directly.
+  const PLAN_FORM_VALUES: Record<string, string> = {
+    "content-10": "content-support",
+    "content-20": "content-support",
+    "content-30": "content-support",
+    "starter": "starter-mgmt",
+    "growth": "growth-mgmt",
+    "scale": "scale-mgmt"
+  };
+
   const handleBookPlan = (planId: string) => {
-    setSelectedPlanDetail(planId);
+    setSelectedPlanDetail(PLAN_FORM_VALUES[planId] ?? planId);
     scrollToSection("booking-form");
   };
 
@@ -608,40 +619,38 @@ export default function LiveWebsite({ theme, toggleTheme }: LiveWebsiteProps) {
       >
         <div className="text-center">
           <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 tracking-tight mt-1">Flexible Retainers</h3>
-          <p className="text-gray-500 text-xs sm:text-sm mt-1">Select consultation packs or full multichannel media management.</p>
+          <p className="text-gray-500 text-xs sm:text-sm mt-1">Select consultation calls, content support packs, or full multichannel media management.</p>
         </div>
 
         {/* Pricing Selector Buttons */}
-        <div className="flex justify-center p-1 bg-gray-100 border border-gray-200 rounded-xl max-w-lg mx-auto">
-          <button
-            onClick={() => setPricingMode("consult")}
-            className={`w-1/2 text-center py-2 text-xs font-bold rounded-lg transition-all select-none cursor-pointer ${
-              pricingMode === "consult"
-                ? "bg-white text-gray-900 shadow-sm"
-                : "text-gray-500 hover:text-gray-900"
-            }`}
-          >
-            Consultation + Content Support
-          </button>
-          <button
-            onClick={() => setPricingMode("management")}
-            className={`w-1/2 text-center py-2 text-xs font-bold rounded-lg transition-all select-none cursor-pointer ${
-              pricingMode === "management"
-                ? "bg-white text-gray-900 shadow-sm"
-                : "text-gray-500 hover:text-gray-900"
-            }`}
-          >
-            Full Social Media Management
-          </button>
+        <div className="flex justify-center p-1 bg-gray-100 border border-gray-200 rounded-xl max-w-2xl mx-auto">
+          {([
+            { mode: "consult", label: "Consultation Call" },
+            { mode: "content", label: "Content Support" },
+            { mode: "management", label: "Full Social Media Management" }
+          ] as const).map(({ mode, label }) => (
+            <button
+              key={mode}
+              onClick={() => setPricingMode(mode)}
+              className={`w-1/3 text-center px-2 py-2 text-xs font-bold leading-tight rounded-lg transition-all select-none cursor-pointer ${
+                pricingMode === mode
+                  ? "bg-white text-gray-900 shadow-sm"
+                  : "text-gray-500 hover:text-gray-900"
+              }`}
+            >
+              {label}
+            </button>
+          ))}
         </div>
 
         {/* Selected Catalog Grids */}
-        <div className={`grid grid-cols-1 md:grid-cols-2 gap-6 pt-2 ${
-          pricingMode === "consult" 
-            ? "lg:grid-cols-4" 
-            : "lg:grid-cols-3 lg:max-w-4xl lg:mx-auto"
-        }`}>
-          {(pricingMode === "consult" ? CONSULTATION_PLANS : MANAGEMENT_PLANS).map((plan) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2 lg:grid-cols-3 lg:max-w-4xl lg:mx-auto">
+          {(pricingMode === "consult"
+            ? CONSULTATION_PLANS
+            : pricingMode === "content"
+              ? CONTENT_SUPPORT_PLANS
+              : MANAGEMENT_PLANS
+          ).map((plan) => (
             <div 
               key={plan.id}
               className={`bg-white border rounded-2xl p-6 space-y-5 relative flex flex-col justify-between transition-transform duration-300 ${
@@ -677,6 +686,12 @@ export default function LiveWebsite({ theme, toggleTheme }: LiveWebsiteProps) {
                       <span>{feat}</span>
                     </div>
                   ))}
+                  {plan.excludes && (
+                    <div className="flex gap-2 text-xs text-gray-400 font-sans leading-normal pt-1">
+                      <X className="w-4 h-4 shrink-0 mt-0.5" />
+                      <span>{plan.excludes}</span>
+                    </div>
+                  )}
                 </div>
               </div>
 
